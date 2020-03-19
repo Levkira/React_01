@@ -32,16 +32,6 @@ class App extends React.Component {
         this.setState({products: updatedProducts})
     };
 
-    renderProduct() {
-        return this.state.products.map(product =>
-            <ProductRow
-                key={product.id}
-                data={product}
-                onProductRemove={this.onProductRemove}
-            />
-        )
-    }
-
     addProduct = obj => {
         const newProduct = [
             ...this.state.products,
@@ -65,7 +55,13 @@ class App extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.renderProduct()}
+                    {this.state.products.map(product =>
+                        <ProductRow
+                            key={product.id}
+                            data={product}
+                            onProductRemove={this.onProductRemove}
+                        />
+                    )}
                     </tbody>
                 </table>
                 <AddForm addProduct={this.addProduct}/>
